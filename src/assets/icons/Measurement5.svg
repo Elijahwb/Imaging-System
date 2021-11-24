@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Measurement_5" data-name="Measurement 5" transform="translate(-161 -185)">
+    <path id="Measurement_5-2" data-name="Measurement 5" d="M0,19.723V3.035H20.226V19.723ZM1.4,8.64v9.716l17.548-.012V14.027a6.32,6.32,0,0,1-3.432,1.094,5.234,5.234,0,0,1-2.492-.635,14.131,14.131,0,0,1-3.685-2.877A17.744,17.744,0,0,0,6.747,9.354,5.726,5.726,0,0,0,3.4,8.3a5.92,5.92,0,0,0-2,.34Zm5.415-.276a10.693,10.693,0,0,1,3.206,2.611A9.529,9.529,0,0,0,13.6,13.709a5.508,5.508,0,0,0,2.08.427A4.976,4.976,0,0,0,18.944,12.9V4.316L1.4,4.325V7.67a.013.013,0,0,1,.009,0,6,6,0,0,1,1.667-.22,8.423,8.423,0,0,1,3.735.913ZM18.337,1.519H1.886A1.012,1.012,0,1,1,1.886.5H18.337a1.012,1.012,0,1,1,0,1.014Z" transform="translate(162.834 187.283)" fill="#ff770e"/>
+    <g id="Rectangle_1935" data-name="Rectangle 1935" transform="translate(161 185)" fill="none" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="24" height="24" stroke="none"/>
+      <rect x="0.5" y="0.5" width="23" height="23" fill="none"/>
+    </g>
+  </g>
+</svg>
