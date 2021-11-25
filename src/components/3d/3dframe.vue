@@ -19,7 +19,7 @@ import Topbar from "../global/Topbar.vue";
 import Sidecontent from "../global/SideContent.vue";
 import Contentsection from "../global/ContentContainer.vue";
 import SideBar3d from "./3dSidebar.vue";
-import ContentBody from "./3dContent2.vue";
+import ContentBody from "./3dContent3.vue";
 
 export default {
   components: {

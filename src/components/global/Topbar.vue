@@ -19,10 +19,10 @@
             </router-link>
         </div>
         <div class="user-info">
+            <div class="username">Dr. Brandon</div>
             <div class="user-avatar">
                 <img src="@/assets/placeholder.jpeg" alt="">
             </div>
-            <div class="username">Dr. Brandon</div>
         </div>
     </section>
 </template>
@@ -44,15 +44,15 @@ export default {
 .user-avatar img {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
+    border-radius: 8px;
     object-fit: cover;
 }
 .user-avatar {
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background: var(--appWhite);
-    margin-right: 5px;
+    margin-left: 10px;
 }
 .user-info:hover {
     cursor: pointer;

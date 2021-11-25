@@ -14,7 +14,7 @@
         /> -->
       </div>
       <div class="col-12 image-list">
-        <LiveImages :images="cropped" />
+        <!-- <LiveImages :images="cropped" /> -->
       </div>
     </div>
   </div>
@@ -24,13 +24,13 @@
 import * as THREE from 'three';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import FloatingEditingMenu from "../menu/FloatingEditingMenu.vue";
-import LiveImages from "./3dLiveImages.vue";
+// import FloatingEditingMenu from "../menu/FloatingEditingMenu.vue";
+// import LiveImages from "./3dLiveImages.vue";
 export default {
   name: "3dContentBody",
   components: {
-    FloatingEditingMenu,
-    LiveImages,
+    // FloatingEditingMenu,
+    // LiveImages,
   },
   data() {
     return {
@@ -142,7 +142,7 @@ export default {
     height: 100%;
 }
 .editing-container {
-    background: red;
+    /* background: red; */
 }
 .editing-container {
   /* height: calc(100vh - var(--topBarHeight) - 500px); */
