@@ -57,19 +57,20 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      active_item: "all",
-    };
-  },
-  methods: {
-    selected(type) {
-      this.active_item = type;
-    },
-  },
-};
+<script lang='ts'>
+import Vue from "vue";
+import Component from "vue-class-component";
+
+@Component({
+  name: "ImageFilter",
+})
+export default class TimestampFilter extends Vue {
+  active_item = "all";
+
+  selected(type: string): void {
+    this.active_item = type;
+  }
+}
 </script>
 
 <style scoped>

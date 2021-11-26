@@ -2,7 +2,7 @@ export interface Photo {
     url: string
     name?: string
     created_at: string,
-    type: string
+    type: "Pano" | "Graph" | "IO Sensor" | "IO Camera" | "Photo" | "Capture"
 }
 
 export interface EditorDimensions {

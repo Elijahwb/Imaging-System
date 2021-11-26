@@ -1,12 +1,9 @@
 <template>
   <div class="image-editor">
+    <DynamicFloatingMenu>
+      <template v-if="isCropping"><CroppingMenu /></template>
+    </DynamicFloatingMenu>
     <ImageEditor ref="imageEditor" :include-ui="false"></ImageEditor>
-    <button v-if="isCropping" class="btn btn-primary pb-36" @click="crop()">
-      crop
-    </button>
-    <label for="input-image-file"
-      ><span class="btn btn-dark pb-36">Load Image</span></label
-    >
     <input
       class="input-image"
       type="file"
@@ -14,10 +11,11 @@
       id="input-image-file"
       @change="loadLocalFile"
     />
-    <span class="btn btn-success pb-36" @click="zoomChange('in')">Zoom +</span>
-    <span class="btn btn-secondary pb-36" @click="zoomChange('out')"
-      >Zoom -</span
-    >
+    <div class="images-container">
+      <div class="saved-images" v-for="(image, index) in images" :key="index">
+        <img :src="image.url" height="100" width="150" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -27,42 +25,38 @@ import "tui-image-editor/dist/tui-image-editor.css";
 import demo from "@/assets/xrays/6.jpeg";
 import { ImageEditor } from "@toast-ui/vue-image-editor";
 import EditingModule from "@/store/modules/2d.editing.module";
+import DynamicFloatingMenu from "../menu/DynamicFloatingMenu.vue";
+import CroppingMenu from "@/components/menu/editing/CroppingMenu.vue";
 
 export default {
   name: "Editor2d",
   components: {
     ImageEditor,
+    DynamicFloatingMenu,
+    CroppingMenu,
   },
   mounted() {
-    this.loadImage();
-    EditingModule.setEditor(this.$refs.imageEditor, {
-      url: demo,
-      created_at: "2020-12-03 23:55",
-      type: "pano",
+    EditingModule.loadInitialEditor({
+      editor: this.$refs.imageEditor,
+      image: {
+        url: demo,
+        created_at: "2020-12-03 23:55",
+        type: "Pano",
+      },
     });
+    EditingModule.loadSavedImages();
   },
   methods: {
-    loadImage() {
-      this.$refs.imageEditor
-        .invoke("loadImageFromURL", demo, "My sample image")
-        .then((result) => {
-          // this.resizeEditor(result);
-          console.log(result);
-        });
-    },
     loadLocalFile(event) {
       EditingModule.loadLocalFile(event);
-    },
-    crop() {
-      EditingModule.crop();
-    },
-    zoomChange(type) {
-      EditingModule.zoomChange(type);
     },
   },
   computed: {
     isCropping() {
       return EditingModule.isCropping;
+    },
+    images() {
+      return EditingModule.files;
     },
   },
 };
@@ -72,7 +66,7 @@ export default {
 .image-editor {
   width: 100%;
   height: 80%;
-  color: green;
+  color: var(--dsBrandColor);
   text-align: center;
 }
 .input-image {
@@ -82,5 +76,13 @@ export default {
 .disabled {
   opacity: 0.5;
   pointer-events: none;
+}
+.saved-images {
+  display: flex;
+  flex-flow: row;
+}
+.images-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>

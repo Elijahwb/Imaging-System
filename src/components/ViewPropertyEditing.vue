@@ -1,9 +1,7 @@
 <template>
   <EditingCard heading="Viewer Property">
     <div class="row">
-      <Slider :value="8" @onChange="changeBrightness"
-        ><LightIcon></LightIcon
-      ></Slider>
+      <Slider :value="8" @onChange="changeBrightness"> <LightIcon /></Slider>
       <Slider :value="15" @onChange="applyContrast"><BrightnessIcon /></Slider>
       <Slider :value="5" @onChange="applyPixelated"><MeasurementIcon /></Slider>
       <div class="col-6">

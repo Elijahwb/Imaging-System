@@ -57,28 +57,29 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      active_item: "pano",
-      imageTypes: [
-        { name: "All", enabled: true },
-        { name: "Pano", enabled: true },
-        { name: "Graph", enabled: false },
-        { name: "IO Sensor", enabled: true },
-        { name: "IO Camera", enabled: true },
-        { name: "Photo", enabled: true },
-        { name: "Capture", enabled: false },
-      ],
-    };
-  },
-  methods: {
-    selected(type) {
-      this.active_item = type;
-    },
-  },
-};
+<script lang='ts'>
+import Vue from "vue";
+import Component from "vue-class-component";
+
+@Component({
+  name: "ImageFilter",
+})
+export default class ImageFilter extends Vue {
+  active_item = "pano";
+  imageTypes = [
+    { name: "All", enabled: true },
+    { name: "Pano", enabled: true },
+    { name: "Graph", enabled: false },
+    { name: "IO Sensor", enabled: true },
+    { name: "IO Camera", enabled: true },
+    { name: "Photo", enabled: true },
+    { name: "Capture", enabled: false },
+  ];
+
+  selected(type: string): void {
+    this.active_item = type;
+  }
+}
 </script>
 
 <style scoped>
