@@ -8,7 +8,7 @@
         <MenuIcon class="edit-menu-icon" @click="zoomChange('out')" />
       </div>
       <div class="col-4">
-        <General3 class="edit-menu-icon" />
+        <General3 class="edit-menu-icon" @click="addShape" />
       </div>
       <div class="col-4">
         <General4 class="edit-menu-icon" />
@@ -29,8 +29,9 @@ import General3 from "@/assets/icons/General3.svg";
 import General4 from "@/assets/icons/General4.svg";
 import General5 from "@/assets/icons/General5.svg";
 import EditingModule from "@/store/modules/2d.editing.module";
+import Component from "vue-class-component";
 
-export default Vue.extend({
+@Component({
   name: "GeneralEditing",
   components: {
     EditingCard,
@@ -40,10 +41,37 @@ export default Vue.extend({
     General4,
     General5,
   },
-  methods: {
-    zoomChange(type: string): void {
-      EditingModule.zoomChange(type);
-    },
-  },
-});
+})
+export default class GeneralEditing extends Vue {
+  zoomChange(type: string): void {
+    EditingModule.zoomChange(type);
+  }
+  addShape(): void {
+    EditingModule.addShape();
+  }
+}
 </script>
+<style scoped>
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+</style>

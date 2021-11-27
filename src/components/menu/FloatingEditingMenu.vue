@@ -84,11 +84,11 @@
         </div>
       </div>
       <div class="col-12 menu-icon d-flex align-items-end flex-column">
-        <EditIcon><Drawing4 /></EditIcon>
-        <EditIcon><General1 /></EditIcon>
-        <EditIcon><Drawing2 /></EditIcon>
-        <EditIcon><General3 /></EditIcon>
-        <EditIcon
+        <EditIcon @onClick="saveFile"><Drawing4 /></EditIcon>
+        <EditIcon @onClick="saveFile"><General1 /></EditIcon>
+        <EditIcon @onClick="saveFile"><Drawing2 /></EditIcon>
+        <EditIcon @onClick="saveFile"><General3 /></EditIcon>
+        <EditIcon @onClick="saveFile"
           ><span> <i class="fa fa-crop" aria-hidden="true"></i> </span
         ></EditIcon>
       </div>
@@ -96,13 +96,17 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import Drawing4 from "@/assets/icons/Drawing4.svg";
 import General1 from "@/assets/icons/General1.svg";
 import Drawing2 from "@/assets/icons/Drawing2.svg";
 import General3 from "@/assets/icons/General3.svg";
 import EditIcon from "./EditIcon.vue";
-export default {
+import Component from "vue-class-component";
+import EditingModule from "@/store/modules/2d.editing.module";
+
+@Component({
   name: "FloatingEditingMenu",
   components: {
     Drawing4,
@@ -111,7 +115,14 @@ export default {
     Drawing2,
     General3,
   },
-};
+})
+export default class FloatingEditingMenu extends Vue {
+  saveFile(): void {
+    console.log("great");
+
+    // EditingModule.saveFile();
+  }
+}
 </script>
 
 <style scoped>
