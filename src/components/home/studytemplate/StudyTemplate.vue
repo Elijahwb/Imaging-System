@@ -55,6 +55,8 @@ export default {
     width: 100%;
     height: 30px;
     background: rgba(0,0,0,.5);
+    color: #fff;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;

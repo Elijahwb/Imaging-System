@@ -1,22 +1,22 @@
 <template>
     <div class="submenu-container">
-        <router-link to="/patient/studytemplate" class="submenu-item" :class="{'active': currentPath.toString().indexOf('studytemplate') >= 0}">
+        <router-link to="/patient/studytemplate" class="submenu-item" :class="{'active': currentPath.toString().indexOf('studytemplate') >= 0 || currentPath.toString() == '/'}">
             <div class="icon-area">
                 <i class="fa fa-movie"></i>
             </div>
-            <div class="label">Study Template</div>
+            <div class="label">STUDY TEMPLATE</div>
         </router-link>
         <router-link to="/patient/timeseries" class="submenu-item" :class="{'active': currentPath.toString().indexOf('timeseries') >= 0}">
             <div class="icon-area">
                 <i class="fa fa-clock"></i>
             </div>
-            <div class="label">Time Series</div>
+            <div class="label">TIME SERIES</div>
         </router-link>
         <router-link to="/patient/modularity" class="submenu-item" :class="{'active': currentPath.toString().indexOf('modularity') >= 0}">
             <div class="icon-area">
                 <i class="fa fa-th"></i>
             </div>
-            <div class="label">Modality Series</div>
+            <div class="label">MODALITY SERIES</div>
         </router-link>
     </div>
 </template>
@@ -55,7 +55,8 @@ export default {
     margin-right: 8px;
 }
 .submenu-item.active {
-    color: var(--appWhite);
+    /* color: var(--appWhite); */
+    color: #fff;
     /* background: rgb(41,146,137);
     background: linear-gradient(0deg, rgba(41,146,137,1) 0%, rgba(57,166,156,1) 35%, rgba(75,202,190,1) 100%); */
     background: rgb(249,142,0);

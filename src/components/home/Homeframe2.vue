@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Dentalnav from "@/components/dentalsoftcomponents/DentalNavbar.vue"
+import Dentalnav from "@/components/dentalsoftcomponents/DentalNav.vue"
 export default {
     components: {
         Dentalnav,

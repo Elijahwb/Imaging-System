@@ -14,7 +14,8 @@
     --highlightTwo: #2b9087;
     --componentHighlight: #373b3e;
     --appWhite: #dfdede;
-    --topBarHeight: 50px;
+    /* --topBarHeight: 50px; */
+    --topBarHeight: 70px;
     --normalFontSize: 14px;
     --scrollbarBG: #CFD8DC;
     --thumbBG: #90A4AE;

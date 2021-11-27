@@ -2,17 +2,18 @@
     <section class="app-container">
         <Sidebar />
         <Topbar />
+        <MainNav />
         <section class="sections">
             <Sidecontent>
                 <div class="heading">
-                    <div>Patients</div>
+                    <div style="font-weight: bold;">Patients</div>
                     <div class="add-patient">
                         <i class="fa fa-user-plus"></i>
                     </div>
                 </div>
 
                 <div class="search-patients-container">
-                    <input type="text" placeholder="Search ID or Name">
+                    <input type="text" placeholder="Search patient ID or Name">
                     <i class="fa fa-search"></i>
                 </div>
 
@@ -46,11 +47,12 @@
 
 <script>
 import Sidebar from "@/components/global/Sidebar.vue"
-import Topbar from "../global/Topbar.vue";
-import Sidecontent from "../global/SideContent.vue";
+import Topbar from "../global/Topbar2.vue";
+import Sidecontent from "../global/SideContent2.vue";
 import Contentsection from "../global/ContentContainer.vue";
 import Patientcard from "./PatientCard.vue";
 import Submenu from "./Submenu.vue";
+import MainNav from "@/components/global/MainNav.vue"
 
 export default {
     components: {
@@ -60,6 +62,7 @@ export default {
         Patientcard,
         Submenu,
         Sidebar,
+        MainNav,
     },
     data(){
         return {
@@ -188,7 +191,7 @@ export default {
     border-radius: 6px;
     margin-top: 15px;
     /* border: 1px solid var(--dsHighlight); */
-    box-shadow: 5px 5px 10px rgba(0,0,0,.2);
+    /* box-shadow: 5px 5px 10px rgba(0,0,0,.2); */
 }
 /* End of search patients section style*/
 
@@ -205,7 +208,7 @@ export default {
     margin-top: 10px;
     width: calc(100% - 80px);
     margin-left: 80px;
-    height: calc(100vh - var(--topBarHeight) - 14px);
+    height: calc(100vh - var(--topBarHeight) - 14px - 60px - 10px);
 }
 .app-container {
     /* font-family: "Mohave"; */
