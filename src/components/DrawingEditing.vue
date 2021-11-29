@@ -2,7 +2,10 @@
   <EditingCard heading="Drawing">
     <div class="row">
       <div class="col-4">
-        <Drawing1 class="edit-menu-icon" @click="modeCropping" />
+        <Drawing1
+          class="edit-menu-icon"
+          @click="isCropping ? cancleCropping() : modeCropping()"
+        />
       </div>
       <div class="col-4">
         <Drawing2 class="edit-menu-icon" @click="addText('Type something')" />
@@ -45,10 +48,17 @@ export default class DrawingEditing extends Vue {
     EditingModule.modeCropping();
   }
   startDrawing(): void {
-    EditingModule.startDrawing();
+    EditingModule.startDrawing({});
   }
   addText(text: string): void {
-    EditingModule.addText(text);
+    EditingModule.addText({ text: text });
+  }
+  cancleCropping(): void {
+    EditingModule.cancleCropping();
+  }
+
+  get isCropping(): boolean {
+    return EditingModule.isCropping;
   }
 }
 </script>

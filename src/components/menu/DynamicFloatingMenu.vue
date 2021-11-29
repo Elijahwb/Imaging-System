@@ -11,9 +11,9 @@
               xmlns="http://www.w3.org/2000/svg"
               enable-background="new 0 0 20 20"
             >
-              <path
+              <!-- <path
                 d="M13.2,2c-2-0.1-4,0.7-5.5,2.1C6.3,5.5,5.5,7.5,5.5,9.5v0l-1.9,4c-0.2,0.5,0,1.1,0.5,1.3C4.2,15,4.4,15,4.5,15h1v2c0,1.1,0.9,2,2,2h1v2c0,0.6,0.4,1,1,1h0c0.6,0,8.6,0,9,0c0.1,0,0.2,0,0.3,0c0.5-0.2,0.8-0.7,0.7-1.2l-0.9-3.2l1.9-7.3c0-0.1,0-0.2,0-0.3V9.8C20.5,5.7,17.3,2.2,13.2,2z"
-              />
+              /> -->
             </svg>
           </div>
           <div class="head-position">
@@ -24,9 +24,9 @@
               xmlns="http://www.w3.org/2000/svg"
               enable-background="new 0 0 20 20"
             >
-              <path
+              <!-- <path
                 d="M13.2,2c-2-0.1-4,0.7-5.5,2.1C6.3,5.5,5.5,7.5,5.5,9.5v0l-1.9,4c-0.2,0.5,0,1.1,0.5,1.3C4.2,15,4.4,15,4.5,15h1v2c0,1.1,0.9,2,2,2h1v2c0,0.6,0.4,1,1,1h0c0.6,0,8.6,0,9,0c0.1,0,0.2,0,0.3,0c0.5-0.2,0.8-0.7,0.7-1.2l-0.9-3.2l1.9-7.3c0-0.1,0-0.2,0-0.3V9.8C20.5,5.7,17.3,2.2,13.2,2z"
-              />
+              /> -->
             </svg>
           </div>
           <div class="head-position">
@@ -37,9 +37,9 @@
               xmlns="http://www.w3.org/2000/svg"
               enable-background="new 0 0 20 20"
             >
-              <path
+              <!-- <path
                 d="M13.2,2c-2-0.1-4,0.7-5.5,2.1C6.3,5.5,5.5,7.5,5.5,9.5v0l-1.9,4c-0.2,0.5,0,1.1,0.5,1.3C4.2,15,4.4,15,4.5,15h1v2c0,1.1,0.9,2,2,2h1v2c0,0.6,0.4,1,1,1h0c0.6,0,8.6,0,9,0c0.1,0,0.2,0,0.3,0c0.5-0.2,0.8-0.7,0.7-1.2l-0.9-3.2l1.9-7.3c0-0.1,0-0.2,0-0.3V9.8C20.5,5.7,17.3,2.2,13.2,2z"
-              />
+              /> -->
             </svg>
           </div>
           <div class="head-position">
@@ -50,9 +50,9 @@
               xmlns="http://www.w3.org/2000/svg"
               enable-background="new 0 0 20 20"
             >
-              <path
+              <!-- <path
                 d="M13.2,2c-2-0.1-4,0.7-5.5,2.1C6.3,5.5,5.5,7.5,5.5,9.5v0l-1.9,4c-0.2,0.5,0,1.1,0.5,1.3C4.2,15,4.4,15,4.5,15h1v2c0,1.1,0.9,2,2,2h1v2c0,0.6,0.4,1,1,1h0c0.6,0,8.6,0,9,0c0.1,0,0.2,0,0.3,0c0.5-0.2,0.8-0.7,0.7-1.2l-0.9-3.2l1.9-7.3c0-0.1,0-0.2,0-0.3V9.8C20.5,5.7,17.3,2.2,13.2,2z"
-              />
+              /> -->
             </svg>
           </div>
           <div class="head-position">
@@ -63,9 +63,9 @@
               xmlns="http://www.w3.org/2000/svg"
               enable-background="new 0 0 20 20"
             >
-              <path
+              <!-- <path
                 d="M13.2,2c-2-0.1-4,0.7-5.5,2.1C6.3,5.5,5.5,7.5,5.5,9.5v0l-1.9,4c-0.2,0.5,0,1.1,0.5,1.3C4.2,15,4.4,15,4.5,15h1v2c0,1.1,0.9,2,2,2h1v2c0,0.6,0.4,1,1,1h0c0.6,0,8.6,0,9,0c0.1,0,0.2,0,0.3,0c0.5-0.2,0.8-0.7,0.7-1.2l-0.9-3.2l1.9-7.3c0-0.1,0-0.2,0-0.3V9.8C20.5,5.7,17.3,2.2,13.2,2z"
-              />
+              /> -->
             </svg>
           </div>
           <div class="col-2 head-position">
@@ -76,14 +76,20 @@
               xmlns="http://www.w3.org/2000/svg"
               enable-background="new 0 0 20 20"
             >
-              <path
+              <!-- <path
                 d="M13.2,2c-2-0.1-4,0.7-5.5,2.1C6.3,5.5,5.5,7.5,5.5,9.5v0l-1.9,4c-0.2,0.5,0,1.1,0.5,1.3C4.2,15,4.4,15,4.5,15h1v2c0,1.1,0.9,2,2,2h1v2c0,0.6,0.4,1,1,1h0c0.6,0,8.6,0,9,0c0.1,0,0.2,0,0.3,0c0.5-0.2,0.8-0.7,0.7-1.2l-0.9-3.2l1.9-7.3c0-0.1,0-0.2,0-0.3V9.8C20.5,5.7,17.3,2.2,13.2,2z"
-              />
+              /> -->
             </svg>
           </div>
         </div>
       </div>
       <div class="col-12 menu-icon d-flex align-items-end flex-column">
+        <EditIcon @onClick="undo()"
+          ><i class="fa fa-undo" aria-hidden="true"></i
+        ></EditIcon>
+        <EditIcon @onClick="redo()"
+          ><i class="fa fa-repeat" aria-hidden="true"></i
+        ></EditIcon>
         <EditIcon @onClick="zoomChange('in')"
           ><i class="fa fa-search-plus" aria-hidden="true"></i
         ></EditIcon>
@@ -92,15 +98,20 @@
         ></EditIcon>
         <label for="input-image-file">
           <span>
-            <EditIcon @onClick="importFile"
+            <EditIcon @onClick="importFile()"
               ><i class="fa fa-download" aria-hidden="true"></i></EditIcon
           ></span>
         </label>
-        <EditIcon @onClick="saveFile"
+        <EditIcon @onClick="saveFile()"
           ><i class="fa fa-floppy-o" aria-hidden="true"></i
         ></EditIcon>
       </div>
       <slot />
+      <div class="col-12 menu-icon d-flex align-items-end flex-column">
+        <EditIcon @onClick="resetImage()"
+          ><i class="fa fa-trash" aria-hidden="true"></i
+        ></EditIcon>
+      </div>
     </div>
   </div>
 </template>
@@ -135,6 +146,15 @@ export default class DynamicFloatingMenu extends Vue {
   zoomChange(type: string): void {
     EditingModule.zoomChange(type);
   }
+  undo(): void {
+    EditingModule.undo();
+  }
+  redo(): void {
+    EditingModule.redo();
+  }
+  resetImage(): void {
+    EditingModule.reset();
+  }
   importFile(): void {
     console.log("File import");
   }
@@ -168,7 +188,7 @@ export default class DynamicFloatingMenu extends Vue {
   height: 30px;
   width: 250px;
   border-radius: 30px;
-  background-color: #484545;
+  /* background-color: #484545; */
   margin-right: 60px;
   position: static;
 }

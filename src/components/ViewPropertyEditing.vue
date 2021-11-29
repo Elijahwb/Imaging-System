@@ -50,9 +50,7 @@
             @change="denoiseImage($event.target.checked)"
             id="flexCheckDenoise"
           />
-          <label class="form-check-label" for="flexCheckDenoise">
-            Denoise
-          </label>
+          <label class="form-check-label" for="flexCheckDenoise"> Noise </label>
         </div>
       </div>
     </div>

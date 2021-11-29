@@ -54,20 +54,6 @@ export default class SectionImages extends Vue {
   }
   /////////////////////
 }
-// export default Vue.extend({
-//   name: "SectionImages",
-//   components: {
-//     CroppedImages,
-//     ImageFilter,
-//     TimestampFilter,
-//   },
-//   data(): { cropped: Array<string>; paranomas: Array<string> } {
-//     return {
-//       cropped: ["5.jpeg", "4.jpeg", "3.jpeg", "2.jpeg", "1.jpeg"],
-//       paranomas: ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg"],
-//     };
-//   },
-// });
 </script>
 
 <style scoped>

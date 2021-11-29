@@ -1,9 +1,17 @@
 <template>
   <div class="image-editor">
+    <template v-if="isAddingText"> <TextEditingMenu /></template>
+    <template v-if="isFreeDrawing"> <FreeDrawingEditingMenu /></template>
     <DynamicFloatingMenu>
       <template v-if="isCropping"><CroppingMenu /></template>
     </DynamicFloatingMenu>
-    <ImageEditor ref="imageEditor" :include-ui="false"></ImageEditor>
+    <!-- <div class="editor-container"> -->
+    <ImageEditor
+      ref="imageEditor"
+      :include-ui="false"
+      class="editor-container"
+    ></ImageEditor>
+    <!-- </div> -->
     <input
       class="input-image"
       type="file"
@@ -26,7 +34,9 @@ import demo from "@/assets/xrays/6.jpeg";
 import { ImageEditor } from "@toast-ui/vue-image-editor";
 import EditingModule from "@/store/modules/2d.editing.module";
 import DynamicFloatingMenu from "../menu/DynamicFloatingMenu.vue";
+import TextEditingMenu from "@/components/menu/editing/TextEditingMenu.vue";
 import CroppingMenu from "@/components/menu/editing/CroppingMenu.vue";
+import FreeDrawingEditingMenu from "@/components/menu/editing/FreeDrawingEditingMenu.vue";
 
 export default {
   name: "Editor2d",
@@ -34,6 +44,8 @@ export default {
     ImageEditor,
     DynamicFloatingMenu,
     CroppingMenu,
+    TextEditingMenu,
+    FreeDrawingEditingMenu,
   },
   mounted() {
     EditingModule.loadInitialEditor({
@@ -57,6 +69,12 @@ export default {
     },
     images() {
       return EditingModule.files;
+    },
+    isAddingText() {
+      return EditingModule.isAddingText;
+    },
+    isFreeDrawing() {
+      return EditingModule.isFreeDrawing;
     },
   },
 };
@@ -84,5 +102,10 @@ export default {
 .images-container {
   display: flex;
   flex-wrap: wrap;
+}
+.editor-container {
+  background: transparent;
+  margin-top: 15%;
+  margin-left: calc(20%);
 }
 </style>
