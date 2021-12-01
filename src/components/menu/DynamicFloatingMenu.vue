@@ -99,7 +99,7 @@
         <label for="input-image-file">
           <span>
             <EditIcon @onClick="importFile()"
-              ><i class="fa fa-download" aria-hidden="true"></i></EditIcon
+              ><i class="fa fa-upload" aria-hidden="true"></i></EditIcon
           ></span>
         </label>
         <EditIcon @onClick="saveFile()"

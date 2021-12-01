@@ -86,10 +86,41 @@ export const ColorsTypes: Array<IColor> = [
 export type EditType = 'text' | 'crop' | 'line_drawing' | 'free_drawing' | 'shape'
 
 export interface TextStyle {
-    color?: string,
+    fill?: string,
     fontSize?: number,
-    fontWeight?: "normal" | "bold",
+    fontWeight?: "normal" | "bold" | undefined,
     fontStyle?: "normal" | "italic",
-    textDecoration?: "underline" | "line-through" | "overline",
+    textDecoration?: "underline" | "line-through" | "overline" | undefined,
     textAlign?: "center" | "right" | "left"
+}
+
+export interface Text {
+    text: string,
+    styles: TextStyle,
+    position: {
+        x: number,
+        y: number
+    }
+}
+
+export interface ShapeStyle {
+    fill?: {
+        type?: "color" | "filter",
+        color?: string,
+        filter?: Array<Record<string, unknown>>
+    },
+    stroke?: string,
+    strokeWidth?: number,
+    width?: number,
+    height?: number,
+    rx?: number,
+    ry?: number,
+    left?: number,
+    top?: number
+    isRegular?: boolean
+}
+
+export interface Shape {
+    type: "rect" | "circle" | "triangle",
+    options: ShapeStyle
 }

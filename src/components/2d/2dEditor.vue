@@ -2,6 +2,7 @@
   <div class="image-editor">
     <template v-if="isAddingText"> <TextEditingMenu /></template>
     <template v-if="isFreeDrawing"> <FreeDrawingEditingMenu /></template>
+    <template v-if="isAddingShape"> <ShapesEditingMenu /></template>
     <DynamicFloatingMenu>
       <template v-if="isCropping"><CroppingMenu /></template>
     </DynamicFloatingMenu>
@@ -37,6 +38,7 @@ import { ImageEditor } from "@toast-ui/vue-image-editor";
 import EditingModule from "@/store/modules/2d.editing.module";
 import DynamicFloatingMenu from "../menu/DynamicFloatingMenu.vue";
 import TextEditingMenu from "@/components/menu/editing/TextEditingMenu.vue";
+import ShapesEditingMenu from "@/components/menu/editing/ShapesEditingMenu.vue";
 import CroppingMenu from "@/components/menu/editing/CroppingMenu.vue";
 import FreeDrawingEditingMenu from "@/components/menu/editing/FreeDrawingEditingMenu.vue";
 
@@ -48,6 +50,7 @@ export default {
     CroppingMenu,
     TextEditingMenu,
     FreeDrawingEditingMenu,
+    ShapesEditingMenu,
   },
   mounted() {
     EditingModule.loadInitialEditor({
@@ -65,14 +68,14 @@ export default {
       EditingModule.loadLocalFile(event);
     },
     onAddText(pos) {
-      console.log({ NewPosition: pos });
+      // console.log({ NewPosition: pos });
       EditingModule.addText({
         text: "Type something",
         position: { x: pos.originPosition.x, y: pos.originPosition.y },
       });
     },
     objectActivated(obj) {
-      console.log({ obj });
+      // console.log({ obj });
       EditingModule.setCurrentActiveObject(obj.id);
     },
   },
@@ -88,6 +91,9 @@ export default {
     },
     isFreeDrawing() {
       return EditingModule.isFreeDrawing;
+    },
+    isAddingShape() {
+      return EditingModule.isAddingShape;
     },
   },
 };

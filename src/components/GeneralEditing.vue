@@ -47,7 +47,16 @@ export default class GeneralEditing extends Vue {
     EditingModule.zoomChange(type);
   }
   addShape(): void {
-    EditingModule.addShape();
+    EditingModule.activateShapeMode({
+      type: "rect",
+      options: {
+        fill: { type: "color", color: "transparent" },
+        stroke: "blue",
+        strokeWidth: 4,
+        height: 200,
+        width: 200,
+      },
+    });
   }
 }
 </script>

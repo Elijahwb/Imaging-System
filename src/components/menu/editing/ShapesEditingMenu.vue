@@ -5,14 +5,14 @@
       <Slider :value="8" @onChange="changeFontSize" />
     </div>
     <div class="text-styles">
-      <span class="style-icon" @click="toggleFontWeight">
-        <i class="fa fa-bold" aria-hidden="true"></i>
+      <span class="style-icon" @click="addShapeRect">
+        <i class="fa fa-square-o" aria-hidden="true"></i>
       </span>
-      <span class="style-icon" @click="toggleFontStyle">
-        <i class="fa fa-italic" aria-hidden="true"></i>
+      <span class="style-icon" @click="addShapeCicle">
+        <i class="fa fa-circle-o" aria-hidden="true"></i>
       </span>
-      <span class="style-icon" @click="toggleUnderline">
-        <i class="fa fa-underline" aria-hidden="true"></i>
+      <span class="style-icon" @click="addShapeTriangle">
+        <i class="fas fa-caret-up" aria-hidden="true"></i>
       </span>
     </div>
   </div>
@@ -26,43 +26,49 @@ import Slider from "@/components/global/Ranger.vue";
 import EditingModule from "@/store/modules/2d.editing.module";
 
 @Component({
-  name: "TextEditingMenu",
+  name: "ShapesEditingMenu",
   components: {
     ColorPicker,
     Slider,
   },
 })
-export default class TextEditingMenu extends Vue {
+export default class ShapesEditingMenu extends Vue {
   isBold = false;
   isItalic = false;
   isUnderlined = false;
   color = "";
 
   changeFontSize(size: string): void {
-    EditingModule.changeTextStyle({ fontSize: parseInt(size, 10) });
+    EditingModule.changeShapeStype({ strokeWidth: parseInt(size, 10) });
   }
   onColorChanged(color: string): void {
     if (color !== this.color) {
       this.color = color;
-      EditingModule.changeTextStyle({ fill: color });
+      EditingModule.changeShapeStype({ stroke: color });
     }
   }
-  toggleFontWeight(): void {
+  addShapeRect(): void {
     this.isBold = !this.isBold;
-    EditingModule.changeTextStyle({
-      fontWeight: this.isBold ? "bold" : undefined,
+    EditingModule.addShape({
+      type: "rect",
+      options: {},
     });
   }
-  toggleFontStyle(): void {
+  addShapeCicle(): void {
     this.isItalic = !this.isItalic;
-    EditingModule.changeTextStyle({
-      fontStyle: this.isItalic ? "italic" : "normal",
+    EditingModule.addShape({
+      type: "circle",
+      options: {
+        rx: 50,
+        ry: 50,
+      },
     });
   }
-  toggleUnderline(): void {
+  addShapeTriangle(): void {
     this.isUnderlined = !this.isUnderlined;
-    EditingModule.changeTextStyle({
-      textDecoration: this.isUnderlined ? "underline" : undefined,
+    EditingModule.addShape({
+      type: "triangle",
+      options: {},
     });
   }
 }
