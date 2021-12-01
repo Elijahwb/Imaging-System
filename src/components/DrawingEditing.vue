@@ -8,7 +8,8 @@
         />
       </div>
       <div class="col-4">
-        <Drawing2 class="edit-menu-icon" @click="addText('Type something')" />
+        <Drawing2 class="edit-menu-icon" @click="activateTextMode" />
+        <!-- @click="addText('Type something')" /> -->
       </div>
       <div class="col-4">
         <Drawing3 class="edit-menu-icon" @click="startLineDrawing" />
@@ -50,8 +51,12 @@ export default class DrawingEditing extends Vue {
   startDrawing(): void {
     EditingModule.startDrawing({});
   }
-  addText(text: string): void {
-    EditingModule.addText({ text: text });
+  // addText(text: string): void {
+  //   EditingModule.addText({ text: text });
+  // }
+
+  activateTextMode(): void {
+    EditingModule.activateTextMode();
   }
   cancleCropping(): void {
     EditingModule.cancleCropping();

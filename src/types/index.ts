@@ -84,3 +84,12 @@ export const ColorsTypes: Array<IColor> = [
 ]
 
 export type EditType = 'text' | 'crop' | 'line_drawing' | 'free_drawing' | 'shape'
+
+export interface TextStyle {
+    color?: string,
+    fontSize?: number,
+    fontWeight?: "normal" | "bold",
+    fontStyle?: "normal" | "italic",
+    textDecoration?: "underline" | "line-through" | "overline",
+    textAlign?: "center" | "right" | "left"
+}

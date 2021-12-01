@@ -10,6 +10,8 @@
       ref="imageEditor"
       :include-ui="false"
       class="editor-container"
+      @addText="onAddText"
+      @objectActivated="objectActivated"
     ></ImageEditor>
     <!-- </div> -->
     <input
@@ -62,6 +64,17 @@ export default {
     loadLocalFile(event) {
       EditingModule.loadLocalFile(event);
     },
+    onAddText(pos) {
+      console.log({ NewPosition: pos });
+      EditingModule.addText({
+        text: "Type something",
+        position: { x: pos.originPosition.x, y: pos.originPosition.y },
+      });
+    },
+    objectActivated(obj) {
+      console.log({ obj });
+      EditingModule.setCurrentActiveObject(obj.id);
+    },
   },
   computed: {
     isCropping() {
@@ -102,10 +115,11 @@ export default {
 .images-container {
   display: flex;
   flex-wrap: wrap;
+  height: 20%;
 }
 .editor-container {
   background: transparent;
-  margin-top: 15%;
-  margin-left: calc(20%);
+  margin-top: 5%;
+  margin-left: calc(8%);
 }
 </style>

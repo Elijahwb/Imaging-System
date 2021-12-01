@@ -1,6 +1,6 @@
 <template>
   <div class="top-menu-container">
-    <ColorPicker />
+    <ColorPicker @onSelectionChanged="onColorChanged" />
     <div class="slider-container">
       <Slider :value="8" @onChange="changeFontSize" />
     </div>
@@ -12,6 +12,8 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import ColorPicker from "../ColorPicker.vue";
 import Slider from "@/components/global/Ranger.vue";
+import EditingModule from "@/store/modules/2d.editing.module";
+import { Colors, TextStyle } from "@/types";
 
 @Component({
   name: "TextEditingMenu",
@@ -21,8 +23,21 @@ import Slider from "@/components/global/Ranger.vue";
   },
 })
 export default class TextEditingMenu extends Vue {
+  styles: TextStyle = {
+    color: Colors.black,
+    fontSize: 20,
+    fontWeight: "normal",
+    fontStyle: "normal",
+    textDecoration: "overline",
+    textAlign: "center",
+  };
   changeFontSize(size: string): void {
-    const brushWidth = parseInt(size, 10);
+    this.styles.fontSize = parseInt(size, 10);
+    EditingModule.changeTextStyle(this.styles);
+  }
+  onColorChanged(color: string): void {
+    this.styles.color = color;
+    EditingModule.changeTextStyle(this.styles);
   }
 }
 </script>

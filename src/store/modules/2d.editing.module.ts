@@ -1,6 +1,6 @@
 import { Action, getModule, Module, Mutation, VuexModule } from "vuex-module-decorators";
 import store from '../'
-import { EditorDimensions, FilterType, Photo } from '../../types'
+import { Colors, EditorDimensions, FilterType, Photo, TextStyle } from '../../types'
 import { getNumber, resizeElement, hexToRGBa } from '../helpers'
 
 @Module({
@@ -27,6 +27,7 @@ class Editing2dModule extends VuexModule {
     width = 0
     minZoom = 0.5
     loaded = false;
+    activeObjectId = ""
 
     @Mutation
     setSavedImages(images: Array<Photo>) {
@@ -70,21 +71,56 @@ class Editing2dModule extends VuexModule {
     }
 
     @Mutation
-    addText(data: { text: string, color?: string, size?: number }) {
-        this.imageEditor.invoke("stopDrawingMode");
+    addText(data: {
+        text: string,
+        font?: { color: string, size: number, weight: "normal" | "bold" },
+        position?: { x: number, y: number }
+    }) {
         this.imageEditor.invoke("addText", data.text, {
             styles: {
-                fill: data.color ?? 'red',
-                fontSize: data.size ?? 20,
-                fontWeight: "bold",
+                fill: data.font?.color ?? Colors.black,
+                fontSize: data.font?.size ?? 20,
+                fontWeight: data.font?.weight ?? "bold",
             },
             position: {
-                x: 10,
-                y: 10,
+                x: data.position?.x ?? 10,
+                y: data.position?.y ?? 10,
             },
         });
         this.isAddingText = true
         this.isCropping = false
+    }
+
+    @Mutation
+    changeTextStyle(styles: TextStyle) {
+        this.imageEditor.invoke("changeTextStyle", this.activeObjectId, {
+            fill: styles.color ?? Colors.black,
+            fontSize: styles.fontSize ?? 20,
+            fontWeight: styles.fontWeight ?? "bold",
+            fontStyle: styles.fontStyle ?? "normal",
+            textDecoration: styles.textDecoration ?? false,
+            textAlign: styles.textAlign ?? "center"
+        });
+    }
+
+    @Mutation
+    activateTextMode() {
+        const mode = this.imageEditor.invoke("getDrawingMode");
+        if (mode !== 'TEXT') {
+            this.imageEditor.invoke("stopDrawingMode");
+            this.imageEditor.invoke("startDrawingMode", "TEXT");
+        }
+        this.isAddingText = true
+        this.isCropping = false
+    }
+
+    @Mutation
+    activateShapeMode() {
+        const mode = this.imageEditor.invoke("getDrawingMode");
+        if (mode !== 'SHAPE') {
+            this.imageEditor.invoke("stopDrawingMode");
+            this.imageEditor.invoke("startDrawingMode", "SHAPE");
+        }
     }
 
     @Mutation
@@ -117,6 +153,7 @@ class Editing2dModule extends VuexModule {
             .then((status: Record<string, unknown>) => {
                 console.log({ status });
             });
+
     }
 
     @Mutation
@@ -129,8 +166,7 @@ class Editing2dModule extends VuexModule {
 
     @Mutation
     startDrawing(data: { width?: number, color?: string }) {
-        console.log({ data });
-
+        this.imageEditor.invoke("stopDrawingMode");
         this.imageEditor.invoke("startDrawingMode", "FREE_DRAWING", {
             width: data.width ?? 5,
             color: data.color ? hexToRGBa(data.color, 0.5) : "rgba(255, 0, 0, 0.5)",
@@ -334,6 +370,11 @@ class Editing2dModule extends VuexModule {
                 });
         }
 
+    }
+
+    @Mutation
+    setCurrentActiveObject(objId: string) {
+        this.activeObjectId = objId
     }
 
     @Mutation
