@@ -2,7 +2,7 @@
   <div class="top-menu-container">
     <ColorPicker @onSelectionChanged="onColorChanged" />
     <div class="slider-container">
-      <Slider :value="8" @onChange="onSliderChange" />
+      <Slider :value="5" @onChange="onSliderChange" />
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ import EditingModule from "@/store/modules/2d.editing.module";
   },
 })
 export default class FreeDrawingEditingMenu extends Vue {
-  brushWidth = 8;
+  brushWidth = 5;
   color = "#000000";
   onSliderChange(size: string): void {
     this.brushWidth = parseInt(size, 10);
