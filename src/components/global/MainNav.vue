@@ -66,7 +66,8 @@ export default {
     min-width: 100px;
     text-align: center;
     padding: 5px 20px;
-    font-size: 17px;
+    /* font-size: 17px; */
+    font-size: 1.0625em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,7 +75,8 @@ export default {
 }
 .main-menu {
     width: calc(100% - 80px);
-    height: 60px;
+    /* height: 60px; */
+    height: 3.75em;
     margin-left: 80px;
     margin-top: 10px;
     display: flex;

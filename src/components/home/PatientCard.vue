@@ -1,12 +1,12 @@
 <template>
     <div class="patient-card-container" :class="{'active': isActive == 'true'}">
         <div class="patient-avatar">
-            <img src="@/assets/placeholder.jpeg" alt="">
+            <img src="@/assets/placeholder.jpg" alt="">
         </div>
         <div class="patient-info">
-            <div class="name">Wavamuno Brandon Elijah</div>
-            <div style="">ID: {{id}}</div>
-            <div>
+            <div class="name">Wavamuno Brandon</div>
+            <div style="font-size: 0.875em;">ID: {{id}}</div>
+            <div style="font-size: 0.875em;">
                 Age: {{age}}
                 <span class="gender" :class="{'male': gender == 'M', 'female': gender == 'F' }">{{gender == 'M' ? 'Male' : 'Female' }}</span>
             </div>
@@ -30,13 +30,15 @@ export default {
 
 <style scoped>
 .name {
-    font-size: 12px;
+    /* font-size: 12px; */
+    font-size: 0.875em;
     font-weight: 600;
     /* color: rgba(0,0,0, .7); */
 }
 .date-added {
     height: 100%;
-    font-size: 12px;
+    /* font-size: 12px; */
+    font-size: 0.875em;
     display: flex;
     align-items: flex-end;
 }
@@ -47,7 +49,8 @@ export default {
     background: #1e84bb;
 } */
 .gender {
-    font-size: 11px;
+    /* font-size: 11px; */
+    font-size: 0.6875em;
     /* width: 20px;
     height: 14px;
     border-radius: 7px;
@@ -58,9 +61,12 @@ export default {
 }
 .patient-info {
     width: calc(100% - 47px);
-    padding-left: 8px;
+    /* padding-left: 8px;
     padding-top: 4px;
-    padding-bottom: 4px;
+    padding-bottom: 4px; */
+    padding-left: 0.5em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
 }
 .patient-avatar img {
     width: 100%;
@@ -69,10 +75,10 @@ export default {
     object-fit: cover;
 }
 .patient-avatar  {
-    width: 47px;
-    height: 47px;
+    width: 3.4375rem;
+    height: 3.4375rem;
     background: var(--sectionBg);
-    border-radius: 50%;
+    border-radius: 6px;
 }
 .patient-card-container.active {
     /* color: #fff; */
@@ -97,7 +103,8 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    /* padding: 10px; */
+    padding: 0.625em;
     /* border-bottom: 2px solid var(--mainBg); */
     border-bottom: 1px solid rgba(0,0,0, .1);
     height: 90px;

@@ -212,7 +212,8 @@ export default {
 }
 .app-container {
     /* font-family: "Mohave"; */
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-family: var(--font-family-sans-serif);
     padding: 0 10px;
     font-size: var(--normalFontSize);
 }

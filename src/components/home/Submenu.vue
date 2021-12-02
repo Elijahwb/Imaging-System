@@ -2,7 +2,7 @@
     <div class="submenu-container">
         <router-link to="/patient/studytemplate" class="submenu-item" :class="{'active': currentPath.toString().indexOf('studytemplate') >= 0 || currentPath.toString() == '/'}">
             <div class="icon-area">
-                <i class="fa fa-movie"></i>
+                <i class="fas fa-book-open"></i>
             </div>
             <div class="label">STUDY TEMPLATE</div>
         </router-link>
@@ -36,23 +36,28 @@ export default {
 
 <style scoped>
 .label {
-    padding-right: 5px;
+    /* padding-right: 5px; */
+    padding-right: 0.3125em;
 }
 .icon-area i {
     font-size: inherit;
 }
 .icon-area {
     background: inherit;
-    width: 30px;
-    height: 30px;
+    /* width: 30px;
+    height: 30px; */
+    width: 1.875em;
+    height: 1.875em;
     display: flex;
     align-items: center;
     justify-content: center;
     /* border-radius: 50%; */
     border-radius: 6px;
-    font-size: 15px;
+    /* font-size: 15px; */
+    font-size: 0.9375em;
     box-shadow: 5px 5px 10px rgba(0,0,0,.2), -5px -5px 10px rgba(0,0,0,.2);
-    margin-right: 8px;
+    /* margin-right: 8px; */
+    margin-right: 0.5em;
 }
 .submenu-item.active {
     /* color: var(--appWhite); */
@@ -70,8 +75,10 @@ export default {
     background: #fff;
     color: var(--contrastBg);
     display: flex;
-    padding: 3px;
-    margin-right: 5px;
+    /* padding: 3px;
+    margin-right: 5px; */
+    padding: 0.1875em;
+    margin-right: 0.3125em;
     /* border-radius: 19px; */
     border-radius: 6px;
     justify-content: flex-start;
@@ -81,7 +88,8 @@ export default {
 }
 .submenu-container {
     display: flex;
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
+    padding-bottom: 0.625em;
     background: var(--sectionBg);
 }
 </style>

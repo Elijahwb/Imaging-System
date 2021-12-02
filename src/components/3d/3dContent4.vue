@@ -1,35 +1,62 @@
 <template>
   <div class="main-container">
       <div class="editing-container">
-        <ImageEditor ref="imageEditor" :include-ui="false"></ImageEditor>
-        <!-- <canvas class="main-canvas"></canvas> -->
+        <canvas class="main-canvas"></canvas>
       </div>
 
       <div class="other-perspectives">
-        <canvas class="side-one"></canvas>
-        <canvas class="side-two"></canvas>
-        <canvas class="side-three"></canvas>
+        <div class="perspective-item">
+          <canvas class="side-one"></canvas>
+          <div class="vertical-line guide-line">
+            <div class="line"></div>
+          </div>
+          <div class="horizontal-line guide-line">
+            <div class="line"></div>
+          </div>
+          <div class="guide-line label">
+            <div class="label">Axial</div>
+          </div>
+        </div>
+        <div class="perspective-item">
+          <canvas class="side-two"></canvas>
+          <div class="vertical-line guide-line">
+            <div class="line"></div>
+          </div>
+          <div class="horizontal-line guide-line">
+            <div class="line"></div>
+          </div>
+          <div class="guide-line label">
+            <div class="label">Sagittal</div>
+          </div>
+        </div>
+        <div class="perspective-item">
+          <canvas class="side-three"></canvas>
+          <div class="vertical-line guide-line">
+            <div class="line"></div>
+          </div>
+          <div class="horizontal-line guide-line">
+            <div class="line"></div>
+          </div>
+          <div class="guide-line label">
+            <div class="label">Coronal</div>
+          </div>
+        </div>
       </div>
   </div>
 </template>
 
 <script>
-import * as THREE from 'three';
-import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+import * as THREE from 'three'
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry'
 // import FloatingEditingMenu from "../menu/FloatingEditingMenu.vue";
 // import LiveImages from "./3dLiveImages.vue";
-import "tui-color-picker/dist/tui-color-picker.css";
-import "tui-image-editor/dist/tui-image-editor.css";
-import { ImageEditor } from "@toast-ui/vue-image-editor";
-import EditingModule from "@/store/modules/2d.editing.module";
 export default {
   name: "3dContentBody",
   components: {
     // FloatingEditingMenu,
     // LiveImages,
-    ImageEditor,
   },
   data() {
     return {
@@ -42,30 +69,17 @@ export default {
     this.sideOneDRenderer();
     this.sideTwoDRenderer();
     this.sideThreeDRenderer();
-    this.loadImage();
-    EditingModule.setEditor(this.$refs.imageEditor, {
-      url: document.querySelector('.side-one').toDataURL("image/png"),
-      created_at: "2020-12-03 23:55",
-      type: "pano",
-    });
   },
   methods: {
-      loadImage() {
-      this.$refs.imageEditor
-        .invoke("loadImageFromURL", document.querySelector('.side-one').toDataURL("image/png"), "My sample image")
-        .then((result) => {
-          // this.resizeEditor(result);
-          console.log(result);
-        });
-    },
       threeDRenderer() {
         const canvas = document.querySelector('.main-canvas');
         const renderer = new THREE.WebGLRenderer({canvas});
 
         const fov = 45;
-        const aspect = 2;  // the canvas default
+        const aspect = canvas.width / canvas.height;  // the canvas default
         const near = 0.1;
         const far = 100;
+        // const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
         const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
         camera.position.set(0, 10, 20);
 
@@ -74,7 +88,7 @@ export default {
         controls.update();
 
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color('white');
+        scene.background = new THREE.Color('black');
 
         //   {
         //     const planeSize = 40;
@@ -97,6 +111,18 @@ export default {
         //     scene.add(mesh);
         //   }
 
+        // {
+        //   var dotGeometry = new THREE.BufferGeometry()
+
+        //   dotGeometry.vertices.push(new THREE.Vector3( 0, 0, 0))
+
+        //   var dotMaterial = new THREE.PointsMaterial( { size: 1, sizeAttenuation: false } )
+
+        //   var dot = new THREE.Points( dotGeometry, dotMaterial )
+
+        //   scene.add( dot )
+        // }
+
         {
           // create a Object 3d for the text
           var text = new THREE.Object3D();
@@ -111,7 +137,7 @@ export default {
 
           // create TextGeometry ( text, parameters )
           // OBS: THE FONT TYPE MUST BE DOWNLOADED AND ADDED TO THE PROJECT
-          var text3d = new TextGeometry(text, {
+          var text3d = new THREE.TextGeometry(text, {
             size: 60,
             height: 1, // this will actually make the object very thin
             curveSegments: 50,
@@ -136,22 +162,40 @@ export default {
             scene.add(light);
         }
 
-        // {
-        //     const color = 0xFFFFFF;
-        //     const intensity = 1;
-        //     const light = new THREE.DirectionalLight(color, intensity);
-        //     light.position.set(0, 10, 0);
-        //     light.target.position.set(-5, 0, 0);
-        //     scene.add(light);
-        //     scene.add(light.target);
-        // }
+        {
+            const color = 0xFFFFFF;
+            const intensity = 1;
+            const light = new THREE.DirectionalLight(color, intensity);
+            light.position.set(0, 10, 0);
+            light.target.position.set(-5, 0, 0);
+            scene.add(light);
+            scene.add(light.target);
+        }
 
         {
             const objLoader = new OBJLoader();
-            objLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj', (root) => {
+            objLoader.load('/img/Teeth.obj', (root) => {
                 scene.add(root);
             });
         }
+
+        const raycaster = new THREE.Raycaster();
+    
+        const mouse = new THREE.Vector2();
+
+        function onMouseMove( event ) {
+
+          // calculate mouse position in normalized device coordinates
+          // (-1 to +1) for both components
+
+          mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+          mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+        }
+
+        window.addEventListener( 'mousemove', onMouseMove, false );
+
+        // window.requestAnimationFrame(render);
 
         function resizeRendererToDisplaySize(renderer) {
             const canvas = renderer.domElement;
@@ -172,6 +216,18 @@ export default {
             camera.updateProjectionMatrix();
             }
 
+            // update the picking ray with the camera and mouse position
+            raycaster.setFromCamera( mouse, camera );
+
+            // calculate objects intersecting the picking ray
+            const intersects = raycaster.intersectObjects( scene.children );
+
+            for ( let i = 0; i < intersects.length; i ++ ) {
+
+              intersects[ i ].object.material.color.set( 0xff0000 );
+
+            }
+
             renderer.render(scene, camera);
 
             requestAnimationFrame(render);
@@ -183,12 +239,12 @@ export default {
         const canvas = document.querySelector('.side-one');
         const renderer = new THREE.WebGLRenderer({canvas});
 
-        const fov = 35;
+        const fov = 40;
         const aspect = 2;  // the canvas default
         const near = 0.1;
         const far = 100;
         const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-        camera.position.set(10, 18, 0);
+        camera.position.set(0, 20, 0);
 
         const controls = new OrbitControls(camera, canvas);
         controls.target.set(0, 5, 0);
@@ -232,7 +288,7 @@ export default {
 
           // create TextGeometry ( text, parameters )
           // OBS: THE FONT TYPE MUST BE DOWNLOADED AND ADDED TO THE PROJECT
-          var text3d = new TextGeometry(text, {
+          var text3d = new THREE.TextGeometry(text, {
             size: 60,
             height: 1, // this will actually make the object very thin
             curveSegments: 50,
@@ -257,19 +313,19 @@ export default {
             scene.add(light);
         }
 
-        // {
-        //     const color = 0xFFFFFF;
-        //     const intensity = 1;
-        //     const light = new THREE.DirectionalLight(color, intensity);
-        //     light.position.set(0, 10, 0);
-        //     light.target.position.set(-5, 0, 0);
-        //     scene.add(light);
-        //     scene.add(light.target);
-        // }
+        {
+            const color = 0xFFFFFF;
+            const intensity = 1;
+            const light = new THREE.DirectionalLight(color, intensity);
+            light.position.set(0, 10, 0);
+            light.target.position.set(-5, 0, 0);
+            scene.add(light);
+            scene.add(light.target);
+        }
 
         {
             const objLoader = new OBJLoader();
-            objLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj', (root) => {
+            objLoader.load('/img/Teeth.obj', (root) => {
                 scene.add(root);
             });
         }
@@ -347,19 +403,19 @@ export default {
             scene.add(light);
         }
 
-        // {
-        //     const color = 0xFFFFFF;
-        //     const intensity = 1;
-        //     const light = new THREE.DirectionalLight(color, intensity);
-        //     light.position.set(0, 10, 0);
-        //     light.target.position.set(-5, 0, 0);
-        //     scene.add(light);
-        //     scene.add(light.target);
-        // }
+        {
+            const color = 0xFFFFFF;
+            const intensity = 1;
+            const light = new THREE.DirectionalLight(color, intensity);
+            light.position.set(0, 10, 0);
+            light.target.position.set(-5, 0, 0);
+            scene.add(light);
+            scene.add(light.target);
+        }
 
         {
             const objLoader = new OBJLoader();
-            objLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj', (root) => {
+            objLoader.load('/img/Teeth.obj', (root) => {
                 scene.add(root);
             });
         }
@@ -399,7 +455,7 @@ export default {
         const near = 0.1;
         const far = 100;
         const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-        camera.position.set(0, -10, 5);
+        camera.position.set(17, 10, 1);
 
         const controls = new OrbitControls(camera, canvas);
         controls.target.set(0, 5, 0);
@@ -437,20 +493,25 @@ export default {
             scene.add(light);
         }
 
-        // {
-        //     const color = 0xFFFFFF;
-        //     const intensity = 1;
-        //     const light = new THREE.DirectionalLight(color, intensity);
-        //     light.position.set(0, 10, 0);
-        //     light.target.position.set(-5, 0, 0);
-        //     scene.add(light);
-        //     scene.add(light.target);
-        // }
+        {
+            const color = 0xFFFFFF;
+            const intensity = 1;
+            const light = new THREE.DirectionalLight(color, intensity);
+            light.position.set(0, 10, 0);
+            light.target.position.set(-5, 0, 0);
+            scene.add(light);
+            scene.add(light.target);
+        }
 
         {
             const objLoader = new OBJLoader();
-            objLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj', (root) => {
-                scene.add(root);
+            objLoader.load('/img/Teeth.obj', (obj) => {
+                var box = new THREE.Box3().setFromObject( obj );
+                var center = new THREE.Vector3();
+                box.getCenter( center );
+                obj.position.sub( center ); // center the model
+                obj.rotation.y = Math.PI; 
+                scene.add(obj);
             });
         }
 
@@ -508,10 +569,55 @@ export default {
 
 .other-perspectives {
   height: 18vw;
-  border: 1px solid orange;
   display: flex;
 }
-.other-perspectives canvas {
+.other-perspectives .perspective-item {
   width: 100%;
+  height: 100%;
+  position: relative;
+}
+.perspective-item canvas {
+  width: 100%;
+  height: 100%;
+}
+.guide-line {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  /* background: green; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vertical-line .line {
+  height: 100%;
+  width: 1px;
+  background: blue;
+}
+.perspective-item:last-child .vertical-line .line {
+  background: green;
+}
+
+.horizontal-line .line {
+  height: 1px;
+  width: 100%;
+  background: crimson;
+}
+
+.perspective-item:first-child .horizontal-line .line {
+  background: green;
+}
+
+.guide-line.label {
+  align-items: flex-start;
+}
+
+.guide-line.label .label {
+  background: orange;
+  width: inherit;
+  padding: 2px 5px;
 }
 </style>

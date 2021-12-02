@@ -1,11 +1,11 @@
 <template>
   <div class="sidebar" style="background-color: #f6f6f6">
     <div class="flex items-center justify-center mt-2 top-0 h-16 w-16">
-      <div class="text-yellow-650 text-3xl" style="color: #ff782e !important">
+      <div class="text-yellow-650 text-3xl" style="color: #ff782e !important;ont-size: 1.875rem;line-height: 2.25rem; font-weight: 600">
         DS
       </div>
     </div>
-    <a href="https://projectdental.nl/dashboard" class="sidebar-item">
+    <a href="https://app.projectdental.nl/dashboard" class="sidebar-item">
       <svg
         :class="{ 'text-white scale-100': isImaging }"
         xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@
         <div class="m-1 whitepsace-nowrap text-white text-xs">Dashboard</div>
       </span>
     </a>
-    <a href="https://projectdental.nl/frontoffice" class="sidebar-item">
+    <a href="https://app.projectdental.nl/frontoffice" class="sidebar-item">
       <svg
         :class="{ 'text-white scale-100': isImaging }"
         xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@
         </div>
       </span>
     </a>
-    <a href="https://projectdental.nl/doctor/patients" class="sidebar-item">
+    <a href="https://app.projectdental.nl/doctor/patients" class="sidebar-item">
       <svg
         :class="{ 'text-white scale-100': isImaging }"
         xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +128,7 @@
       </span>
     </a>
     <a
-      href="https://projectdental.nl/doctor/patients"
+      href="https://app.projectdental.nl/doctor/patients"
       @click="goToNameRoute('appointments')"
       class="sidebar-item"
     >
@@ -332,7 +332,7 @@
       </span>
     </div>
     <div
-      @click="goToNameRoute({ path: 'https://projectdental.nl/logout' })"
+      @click="goToNameRoute({ path: 'https://app.projectdental.nl/logout' })"
       class="
         h-16
         w-16
