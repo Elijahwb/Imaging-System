@@ -38,4 +38,8 @@ export default {
 .side-bar {
   max-width: 270px;
 }
+.row {
+  height: 100%;
+  overflow-y: auto;
+}
 </style>>

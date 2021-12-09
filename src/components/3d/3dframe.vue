@@ -7,7 +7,7 @@
         <SideBar3d />
       </Sidecontent>
       <Contentsection>
-        <div class="container">
+        <div>
           <ContentBody />
         </div>
       </Contentsection>
@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import Topbar from "../global/Topbar2.vue";
-import Sidecontent from "../global/SideContent.vue";
-import Contentsection from "../global/ContentContainer.vue";
-import SideBar3d from "./3dSidebar.vue";
-import ContentBody from "./3dContent4.vue";
+import Topbar from "../global/Topbar2.vue"
+import Sidecontent from "../global/SideContent.vue"
+import Contentsection from "../global/ContentContainer.vue"
+import SideBar3d from "./3dSidebar.vue"
+import ContentBody from "./3dContent7.vue"
 import MainNav from "@/components/global/MainNav.vue"
 
 export default {

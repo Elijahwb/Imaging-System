@@ -49,7 +49,7 @@
 import * as THREE from 'three'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry'
+import MeshSurfaceSampler from '@/packages/MeshSurfaceSampler'
 // import FloatingEditingMenu from "../menu/FloatingEditingMenu.vue";
 // import LiveImages from "./3dLiveImages.vue";
 export default {
@@ -72,16 +72,21 @@ export default {
   },
   methods: {
       threeDRenderer() {
-        const canvas = document.querySelector('.main-canvas');
-        const renderer = new THREE.WebGLRenderer({canvas});
+        const canvas = document.querySelector('.main-canvas')
+
+        const renderer = new THREE.WebGLRenderer({canvas})
+
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight)
+
+        renderer.setPixelRatio(canvas.clientWidth / canvas.clientHeight)
 
         const fov = 45;
-        const aspect = canvas.width / canvas.height;  // the canvas default
+        const aspect = canvas.clientWidth / canvas.clientHeight;  // the canvas default
         const near = 0.1;
-        const far = 100;
+        const far = 1000;
         // const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
         const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-        camera.position.set(0, 10, 20);
+        camera.position.set(0, 0, 20);
 
         const controls = new OrbitControls(camera, canvas);
         controls.target.set(0, 5, 0);
@@ -123,36 +128,36 @@ export default {
         //   scene.add( dot )
         // }
 
-        {
-          // create a Object 3d for the text
-          var text = new THREE.Object3D();
+        // {
+        //   // create a Object 3d for the text
+        //   var text = new THREE.Object3D();
 
-          // set the location of the hash to 1
-          var hash = document.location.hash.substr(1);
+        //   // set the location of the hash to 1
+        //   var hash = document.location.hash.substr(1);
 
-          // check on lenght 
-          if (hash.length !== 0) {
-            text = hash;
-          }
+        //   // check on lenght 
+        //   if (hash.length !== 0) {
+        //     text = hash;
+        //   }
 
-          // create TextGeometry ( text, parameters )
-          // OBS: THE FONT TYPE MUST BE DOWNLOADED AND ADDED TO THE PROJECT
-          var text3d = new THREE.TextGeometry(text, {
-            size: 60,
-            height: 1, // this will actually make the object very thin
-            curveSegments: 50,
-            font: "helvetiker"
-          });
+        //   // create TextGeometry ( text, parameters )
+        //   // OBS: THE FONT TYPE MUST BE DOWNLOADED AND ADDED TO THE PROJECT
+        //   var text3d = new THREE.TextGeometry(text, {
+        //     size: 60,
+        //     height: 1, // this will actually make the object very thin
+        //     curveSegments: 50,
+        //     font: "helvetiker"
+        //   });
 
-          // set the material position and rotation for the text
-          var textMaterial = new THREE.MeshBasicMaterial({
-            color: 0x000000,
-            overdraw: true
-          });
-          text = new THREE.Mesh(text3d, textMaterial);
+        //   // set the material position and rotation for the text
+        //   var textMaterial = new THREE.MeshBasicMaterial({
+        //     color: 0x000000,
+        //     overdraw: true
+        //   });
+        //   text = new THREE.Mesh(text3d, textMaterial);
 
-          scene.add(text);
-        }
+        //   scene.add(text);
+        // }
 
         {
             const skyColor = 0xB1E1FF;  // light blue
@@ -173,9 +178,29 @@ export default {
         }
 
         {
-            const objLoader = new OBJLoader();
-            objLoader.load('/img/Teeth.obj', (root) => {
-                scene.add(root);
+            let teethSet = null
+            let sampler = null
+            const objLoader = new OBJLoader()
+
+            objLoader.load('/img/Teeth.obj', (obj) => {
+              // root.rotation.y = Math.PI * -.5
+              teethSet = obj.children[0];
+              /* Update the material of the object */
+              teethSet.material = new THREE.MeshBasicMaterial({
+                wireframe: true,
+                color: 0x000000,
+                transparent: true,
+                opacity: 0.05
+              });
+              /* Add the teethSet in the scene */
+              scene.add(obj);
+              
+              /* Create a surface sampler from the loaded model */
+              sampler = new THREE.MeshSurfaceSampler(teethSet).build();
+
+              // /* Start the rendering loop */ 
+              // renderer.setAnimationLoop(render);
+              scene.add(obj);
             });
         }
 
@@ -224,7 +249,9 @@ export default {
 
             for ( let i = 0; i < intersects.length; i ++ ) {
 
-              intersects[ i ].object.material.color.set( 0xff0000 );
+              // intersects[ i ].object.material.color.set( 0xff0000 )
+              console.log('This is the object intersect')
+              console.log(intersects[ i ].object)
 
             }
 
@@ -244,7 +271,7 @@ export default {
         const near = 0.1;
         const far = 100;
         const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-        camera.position.set(0, 20, 0);
+        camera.position.set(0, 15, 0);
 
         const controls = new OrbitControls(camera, canvas);
         controls.target.set(0, 5, 0);
@@ -275,41 +302,10 @@ export default {
         //   }
 
         {
-          // create a Object 3d for the text
-          var text = new THREE.Object3D();
-
-          // set the location of the hash to 1
-          var hash = document.location.hash.substr(1);
-
-          // check on lenght 
-          if (hash.length !== 0) {
-            text = hash;
-          }
-
-          // create TextGeometry ( text, parameters )
-          // OBS: THE FONT TYPE MUST BE DOWNLOADED AND ADDED TO THE PROJECT
-          var text3d = new THREE.TextGeometry(text, {
-            size: 60,
-            height: 1, // this will actually make the object very thin
-            curveSegments: 50,
-            font: "helvetiker"
-          });
-
-          // set the material position and rotation for the text
-          var textMaterial = new THREE.MeshBasicMaterial({
-            color: 0x000000,
-            overdraw: true
-          });
-          text = new THREE.Mesh(text3d, textMaterial);
-
-          scene.add(text);
-        }
-
-        {
             const skyColor = 0xB1E1FF;  // light blue
             const groundColor = 0xB97A20;  // brownish orange
             const intensity = 1;
-            const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+            const light = new THREE.HemisphereLight(skyColor, skyColor, intensity);
             scene.add(light);
         }
 
@@ -365,7 +361,7 @@ export default {
         const near = 0.1;
         const far = 100;
         const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-        camera.position.set(0, -15, 5);
+        camera.position.set(0, -15, 0);
 
         const controls = new OrbitControls(camera, canvas);
         controls.target.set(0, 5, 0);
@@ -506,12 +502,10 @@ export default {
         {
             const objLoader = new OBJLoader();
             objLoader.load('/img/Teeth.obj', (obj) => {
-                var box = new THREE.Box3().setFromObject( obj );
-                var center = new THREE.Vector3();
-                box.getCenter( center );
-                obj.position.sub( center ); // center the model
-                obj.rotation.y = Math.PI; 
-                scene.add(obj);
+              obj.rotation.y = Math.PI * -.5
+              obj.position.y = 6
+              obj.position.z = 0.2
+              scene.add(obj);
             });
         }
 
@@ -551,25 +545,23 @@ export default {
     height: 100%;
 }
 .editing-container {
-    /* background: red; */
-}
-.editing-container {
-  /* height: calc(100vh - var(--topBarHeight) - 500px); */
+  height: calc(100vh - var(--topBarHeight) - 500px);
   /* height: 70vh; */
-  height: calc(70vh - 50px);
-  width: calc(100vw - 330px);
+  /* height: calc(70vh - 50px); */
+  width: 100%;
   border: solid 1px;
   margin-bottom: 8px;
   text-align: center;
 }
 .main-container {
   position: relative;
-  z-index: 300;
 }
 
 .other-perspectives {
-  height: 18vw;
+  height: 29.5vh;
   display: flex;
+  align-items: center;
+  border: 1px solid tomato;
 }
 .other-perspectives .perspective-item {
   width: 100%;
@@ -578,7 +570,8 @@ export default {
 }
 .perspective-item canvas {
   width: 100%;
-  height: 100%;
+  height: 90%;
+  border: 1px solid blue;
 }
 .guide-line {
   position: absolute;

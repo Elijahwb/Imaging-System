@@ -10,6 +10,21 @@ const routes: Array<RouteConfig> = [
     component: () => import("@/views/Studytemplate.vue")
   },
   {
+    path: '/prototypeone',
+    name: 'Prototypeone',
+    component: () => import("@/prototypes/One.vue")
+  },
+  {
+    path: '/prototypetwo',
+    name: 'Prototypetwo',
+    component: () => import("@/prototypes/Two.vue")
+  },
+  {
+    path: '/prototypethree',
+    name: 'Prototypetwo',
+    component: () => import("@/prototypes/Three.vue")
+  },
+  {
     path: '/patient/modularity',
     name: 'Patient Modularity',
     component: () => import("@/views/Modularity.vue")
@@ -39,6 +54,11 @@ const routes: Array<RouteConfig> = [
     path: '/3D',
     name: '3D',
     component: () => import("@/views/3d.vue")
+  },
+  {
+    path: '/testing',
+    name: 'Testing',
+    component: () => import("@/components/3d/3dContent8.vue")
   },
 ]
 
