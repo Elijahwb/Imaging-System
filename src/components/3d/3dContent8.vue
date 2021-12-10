@@ -1,12 +1,19 @@
 <template>
-  <canvas></canvas>
+  <div class="section">
+    <!-- <canvas></canvas> -->
+    <SideNav />
+  </div>
 </template>
 
 <script>
 import * as THREE from 'three'
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import SideNav from '@/components/global/NavBar.vue'
 export default {
+  components: {
+    SideNav,
+  },
   methods: {
     init () {
       let camera, scene, renderer, canvas
@@ -197,8 +204,9 @@ export default {
       window.addEventListener('resize', resize)
     }
   },
+
   mounted() {
-    this.init()
+    // this.init()
   },
 }
 </script>

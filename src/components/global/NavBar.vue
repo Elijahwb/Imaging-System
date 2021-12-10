@@ -31,7 +31,7 @@
           <span class="text-black font-normal text-xs">abubakari.asuman@casehospital.ug</span>
         </div>
         <div class="user-avatar mt-1">
-          <img src="@/assets/images/placeholder.jpg" alt="">
+          <img src="@/assets/placeholder.jpg" alt="">
         </div>
       </div>
     </nav>
@@ -43,7 +43,7 @@ import {
   MailIcon,
   ChatIcon,
   GiftIcon,
-} from '@heroicons/vue/outline';
+} from '@vue-hero-icons/outline';
 
 export default {
   components: {

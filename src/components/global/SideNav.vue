@@ -183,7 +183,7 @@ import {
   ViewGridIcon,
   LogoutIcon,
   CogIcon,
-} from '@heroicons/vue/outline';
+} from '@vue-hero-icons/outline'
 
 export default {
   data() {
@@ -253,7 +253,7 @@ export default {
   display: none;
 }
 .sidebar-item {
-  @apply h-16 w-16 flex flex-col items-center justify-center group hover:bg-yellow-650 m-1 hover:shadow-md border my-2 rounded-full
+  @apply h-16 w-16 flex flex-col items-center justify-center group hover:bg-yellow-650 m-1 hover:shadow-md border my-2 rounded-full hover:rounded-2xl
 }
 .sidebar-icon {
   @apply h-8 w-8 text-yellow-650

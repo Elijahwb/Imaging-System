@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import Sidebar from "@/components/global/Sidebar.vue"
+import Sidebar from "@/components/global/SideNav.vue"
 import Topbar from "../global/Topbar2.vue";
 import Sidecontent from "../global/SideContent2.vue";
 import Contentsection from "../global/ContentContainer.vue";
